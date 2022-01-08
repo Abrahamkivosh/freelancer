@@ -19,6 +19,6 @@ class DatabaseSeeder extends Seeder
             'email_verified_at'=>now(),
             'password'=>bcrypt("12345678")
         ]);
-        // $this->call(CountriesSeeder::class);
+        $this->call(CountriesSeeder::class);
     }
 }
