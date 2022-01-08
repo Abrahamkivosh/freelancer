@@ -55,8 +55,7 @@ class HomeController extends Controller
 
 
         try {
-            $response =   $mpesa->LipaNaMPesaOnlineAPI($phone, $amount);
-            $mpesa = $mpesaGateway->lipaNaMPesaOnlineAPI($phone, $amount);
+            $response = $mpesaGateway->lipaNaMPesaOnlineAPI($phone, $amount);
 
             $user->mpesa()->create([
                 'user_id' => auth()->user()->id,
@@ -71,7 +70,7 @@ class HomeController extends Controller
             $user->deposit($amount);
             return back()->with('message', $response['CustomerMessage']);
         } catch (\Throwable $th) {
-            return $th->getMessage(); //  back()->with('error', $response['errorMessage']);
+            return   back()->with('error', $th->getMessage());
         }
     }
     public function withdrawWallet(Request $request, MpesaGateway $mpesaGateway)
